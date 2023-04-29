@@ -33,6 +33,16 @@ public class Spawner {
         return new Dog(name, dogJump, dogRun, dogSwim);
     }
 
+    public static Dog SpawnDefaultDog()
+    {
+        return new Dog();
+    }
+
+    public static Cat SpawnDefaultCat()
+    {
+        return new Cat();
+    }
+
     private static long GetRandom(long min, long max)
     {
         return (int) ((Math.random() * (max - min)) + min);
