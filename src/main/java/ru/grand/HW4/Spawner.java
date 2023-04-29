@@ -16,34 +16,34 @@ public class Spawner {
     private static final long dogMinSwimLength = 8;
     private static final long dogMaxSwimLength = 12;
 
-    public static Cat SpawnCat(String name)
+    public static Cat spawnCat(String name)
     {
-        var catJump = GetRandom(catMinHeightCm, catMaxHeightCm);
-        var catRun = GetRandom(catMinRunLength, catMaxRunLength);
+        var catJump = getRandom(catMinHeightCm, catMaxHeightCm);
+        var catRun = getRandom(catMinRunLength, catMaxRunLength);
 
         return new Cat(name, catJump, catRun);
     }
 
-    public static Dog SpawnDog(String name)
+    public static Dog spawnDog(String name)
     {
-        var dogJump = GetRandom(dogMinHeightCm, dogMaxHeightCm);
-        var dogRun = GetRandom(dogMinRunLength, dogMaxRunLength);
-        var dogSwim = GetRandom(dogMinSwimLength,dogMaxSwimLength);
+        var dogJump = getRandom(dogMinHeightCm, dogMaxHeightCm);
+        var dogRun = getRandom(dogMinRunLength, dogMaxRunLength);
+        var dogSwim = getRandom(dogMinSwimLength,dogMaxSwimLength);
 
         return new Dog(name, dogJump, dogRun, dogSwim);
     }
 
-    public static Dog SpawnDefaultDog()
+    public static Dog spawnDefaultDog()
     {
         return new Dog();
     }
 
-    public static Cat SpawnDefaultCat()
+    public static Cat spawnDefaultCat()
     {
         return new Cat();
     }
 
-    private static long GetRandom(long min, long max)
+    private static long getRandom(long min, long max)
     {
         return (int) ((Math.random() * (max - min)) + min);
     }

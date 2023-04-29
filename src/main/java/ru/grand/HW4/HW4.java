@@ -2,12 +2,12 @@ package ru.grand.HW4;
 
 public class HW4 {
     public static void main(String[] args) {
-        var speedy = Spawner.SpawnDog("Speedy");
-        var bitey = Spawner.SpawnDog("Bitey");
-        var mrPuffy = Spawner.SpawnCat("Mr Puffy");
-        var mrFluffy = Spawner.SpawnCat("Mr Fluffy");
-        var dDog = Spawner.SpawnDefaultDog();
-        var dCat = Spawner.SpawnDefaultCat();
+        var speedy = Spawner.spawnDog("Speedy");
+        var bitey = Spawner.spawnDog("Bitey");
+        var mrPuffy = Spawner.spawnCat("Mr Puffy");
+        var mrFluffy = Spawner.spawnCat("Mr Fluffy");
+        var dDog = Spawner.spawnDefaultDog();
+        var dCat = Spawner.spawnDefaultCat();
 
 
         speedy.run(420);
