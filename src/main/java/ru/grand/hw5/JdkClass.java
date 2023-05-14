@@ -2,10 +2,10 @@ package ru.grand.hw5;
 
 import java.util.Objects;
 
-public class jdkClass {
+public class JdkClass {
     private int tempField;
 
-    public jdkClass(int f)
+    public JdkClass(int f)
     {
         tempField = f;
     }
@@ -13,7 +13,7 @@ public class jdkClass {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        jdkClass jdkClass = (jdkClass) o;
+        JdkClass jdkClass = (JdkClass) o;
         return tempField == jdkClass.tempField;
     }
 
