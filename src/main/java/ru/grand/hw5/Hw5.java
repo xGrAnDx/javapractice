@@ -1,16 +1,16 @@
 package ru.grand.hw5;
 
-public class hw5 {
+public class Hw5 {
     public static void main(String[] args)
     {
         /*task 1*/
-        var tmp1 = new jdkClass(2);
-        var tmp2 = new jdkClass(2);
-        var tmp3 = new jdkClass(3);
+        var tmp1 = new JdkClass(2);
+        var tmp2 = new JdkClass(2);
+        var tmp3 = new JdkClass(3);
 
-        var lmb1 = new lombokClass(3);
-        var lmb2 = new lombokClass(3);
-        var lmb3 = new lombokClass(4);
+        var lmb1 = new LombokClass(3);
+        var lmb2 = new LombokClass(3);
+        var lmb3 = new LombokClass(4);
 
         System.out.println(String.format("tmp1 = tmp2 ?: [%s]", tmp1.equals(tmp2)));
         System.out.println(String.format("tmp1 = tmp3 ?: [%s]", tmp1.equals(tmp3)));
