@@ -19,7 +19,7 @@ public class PrinterWrapper implements IPrinter{
         var head = callQueue.peek();
         var callTime = LocalDateTime.now();
 
-        if (head != null && ChronoUnit.SECONDS.between(head, callTime) > 60) {
+        if (head != null && ChronoUnit.MILLIS.between(head, callTime) > 60000) {
             callQueue.remove();
         }
 
