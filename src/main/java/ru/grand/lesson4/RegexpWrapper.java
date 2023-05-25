@@ -16,7 +16,7 @@ public class RegexpWrapper {
         alphaNumeric = Pattern.compile("^[\\w]+$", Pattern.CASE_INSENSITIVE);
         underscore = Pattern.compile("^[a-z]+_[a-z]+$");
         gLetter = Pattern.compile("\\Bg\\B");
-        tagExtractor = Pattern.compile("<[/]*[a-z]+>");
+        tagExtractor = Pattern.compile("</?[a-z]+>");
         mailChecker = Pattern.compile("^[\\w]+([.-]*[\\w]+)*@([A-Za-z0-9-])+\\.([A-Za-z0-9]{2,3})+$");
     }
 
