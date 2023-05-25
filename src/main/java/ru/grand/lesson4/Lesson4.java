@@ -36,6 +36,9 @@ public class Lesson4 {
         System.out.format("Is [%s] a valid mail: [%s]\n", "@gmail.com", RegexpWrapper.isMailAddress("@gmail.com"));
         System.out.format("Is [%s] a valid mail: [%s]\n", "zlaya@.com", RegexpWrapper.isMailAddress("zlaya@.com"));
         System.out.format("Is [%s] a valid mail: [%s]\n", "zl[a]ya@.com", RegexpWrapper.isMailAddress("zl[a]ya@gmail.com"));
+        System.out.format("Is [%s] a valid mail: [%s]\n", "zla-ya@gmail.com", RegexpWrapper.isMailAddress("zla-ya@gmail.com"));
+        System.out.format("Is [%s] a valid mail: [%s]\n", "zla.ya@gmail.com", RegexpWrapper.isMailAddress("zla.ya@gmail.com"));
+        System.out.format("Is [%s] a valid mail: [%s]\n", "zla.ya@gmail_.com", RegexpWrapper.isMailAddress("zla.ya@gmail_.com"));
 
         // Task 6: Currency formatter
         double money = 1234567.89;
