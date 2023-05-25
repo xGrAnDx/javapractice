@@ -13,11 +13,11 @@ public class RegexpWrapper {
     private static Pattern mailChecker;
     static
     {
-        alphaNumeric = Pattern.compile("^[A-Za-z0-9_]+$", Pattern.CASE_INSENSITIVE);
+        alphaNumeric = Pattern.compile("^[\\w]+$", Pattern.CASE_INSENSITIVE);
         underscore = Pattern.compile("^[a-z]+_[a-z]+$");
         gLetter = Pattern.compile("\\Bg\\B");
-        tagExtractor = Pattern.compile("<[a-z/]*?>");
-        mailChecker = Pattern.compile("^[\\w]+(\\.[\\w-_]+)*@(([\\-\\w]+\\.)+[\\w]{2,3})$");
+        tagExtractor = Pattern.compile("<[/]*[a-z]+>");
+        mailChecker = Pattern.compile("^[\\w]+([.-]*[\\w]+)*@([A-Za-z0-9-])+\\.([A-Za-z0-9]{2,3})+$");
     }
 
     public static boolean isAlphaNumeric(String s)
