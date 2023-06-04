@@ -16,6 +16,10 @@ public class Main {
 
         // Task 2:
 
+        var printer = new DirectoryPrinter(".");
+        printer.printFolders();
+        printer.printFoldersStream();
+
         // Task 3-5
         MatrixDemo();
 
