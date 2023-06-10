@@ -3,7 +3,8 @@ package ru.grand.lesson6;
 import java.io.*;
 
 public class Main {
-    private static final int matrixSize = 4;
+
+    private static final int buffSize = 4096;
 
     private static final String original = "out.txt";
     private static final String copyTo = "copyTo.txt";
@@ -27,20 +28,40 @@ public class Main {
 
     public static void CopyDemo()
     {
-        CreateFile(copyTo);
-        CreateFile(picCopy);
+        createFile(copyTo);
+        createFile(picCopy);
+
+        //Buff size: 1024
+        //Executing CopyFileReaderWriter
+        //Execution time: 705ms
+        //Executing CopyBufferedFileReaderWriter
+        //Execution time: 418ms
+        //Executing CopyFileInputOutputStream
+        //Execution time: 1018ms
+        //Executing CopyBufferedFileInputOutputStream
+        //Execution time: 351ms
+
+        //Buff size: 4096
+        //Executing CopyFileReaderWriter
+        //Execution time: 444ms
+        //Executing CopyBufferedFileReaderWriter
+        //Execution time: 420ms
+        //Executing CopyFileInputOutputStream
+        //Execution time: 476ms
+        //Executing CopyBufferedFileInputOutputStream
+        //Execution time: 330ms
 
         System.out.println("Executing CopyFileReaderWriter");
-        CalcTime(() -> CopyFileReaderWriter());
+        calcTime(() -> copyFileReaderWriter());
 
         System.out.println("Executing CopyBufferedFileReaderWriter");
-        CalcTime(() -> CopyBufferedFileReaderWriter());
+        calcTime(() -> copyBufferedFileReaderWriter());
 
         System.out.println("Executing CopyFileInputOutputStream");
-        CalcTime(() -> CopyFileInputOutputStream());
+        calcTime(() -> copyFileInputOutputStream());
 
         System.out.println("Executing CopyBufferedFileInputOutputStream");
-        CalcTime(() -> CopyBufferedFileInputOutputStream());
+        calcTime(() -> copyBufferedFileInputOutputStream());
     }
 
     public static void MatrixDemo()
@@ -69,28 +90,24 @@ public class Main {
                         { "1","2","3", "a"}
                 };
 
-        ProcessMatrixWithExceptions(inputMatrix);
-        ProcessMatrixWithExceptions(wrongSize);
-        ProcessMatrixWithExceptions(badData);
+        processMatrixWithExceptions(inputMatrix);
+        processMatrixWithExceptions(wrongSize);
+        processMatrixWithExceptions(badData);
 
     }
 
-    public static void ProcessMatrixWithExceptions(String[][] inputMatrix)
+    public static void processMatrixWithExceptions(String[][] inputMatrix)
     {
         try {
-            ProcessMatrix(inputMatrix);
+            processMatrix(inputMatrix);
         }
-        catch (SizeArrayException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        catch (ArrayDataException ex)
+        catch (SizeArrayException | ArrayDataException ex )
         {
             System.out.println(ex.getMessage());
         }
     }
 
-    public static void ProcessMatrix(String[][] input) throws SizeArrayException, ArrayDataException {
+    public static void processMatrix(String[][] input) throws SizeArrayException, ArrayDataException {
         var total = 0;
         if (input.length != 4)
         {
@@ -116,7 +133,7 @@ public class Main {
         System.out.format("Total value provided: [%s]\n", total);
     }
 
-    public static void CalcTime(Runnable r)
+    public static void calcTime(Runnable r)
     {
         var start = System.nanoTime();
         r.run();
@@ -125,11 +142,11 @@ public class Main {
         System.out.format("Execution time: %s \n", (end-start) / 1000000);
     }
 
-    public static void CopyPic()
+    public static void copyPic()
     {
         try(var reader = new FileInputStream(picOriginal)) {
             try (var writer = new FileOutputStream(picCopy)){
-                var buf = new byte[1024];
+                var buf = new byte[buffSize];
                 while(reader.read(buf) != -1)
                 {
                     writer.write(buf);
@@ -142,11 +159,11 @@ public class Main {
         }
     }
 
-    public static void CopyFileInputOutputStream()
+    public static void copyFileInputOutputStream()
     {
         try(var reader = new FileInputStream(original)) {
             try (var writer = new FileOutputStream(copyTo)){
-                var buf = new byte[1024];
+                var buf = new byte[buffSize];
                 while(reader.read(buf) != -1)
                 {
                     writer.write(buf);
@@ -159,13 +176,13 @@ public class Main {
         }
     }
 
-    public static void CopyBufferedFileInputOutputStream()
+    public static void copyBufferedFileInputOutputStream()
     {
         try(var reader = new FileInputStream(original)) {
             try (var writer = new FileOutputStream(copyTo)) {
                 try (var bReader = new BufferedInputStream(reader)) {
                     try (var bWriter = new BufferedOutputStream(writer)) {
-                        var buf = new byte[1024];
+                        var buf = new byte[buffSize];
                         while (bReader.read(buf) != -1) {
                             bWriter.write(buf);
                         }
@@ -179,13 +196,13 @@ public class Main {
         }
     }
 
-    public static void CopyBufferedFileReaderWriter()
+    public static void copyBufferedFileReaderWriter()
     {
         try(var reader = new FileReader(original)) {
             try (var writer = new FileWriter(copyTo)){
                 try (var bReader = new BufferedReader(reader)) {
                     try (var bWriter = new BufferedWriter(writer)) {
-                        var cbuf = new char[1024];
+                        var cbuf = new char[buffSize];
                         while (bReader.read(cbuf) != -1) {
                             bWriter.write(cbuf);
                         }
@@ -199,11 +216,11 @@ public class Main {
         }
     }
 
-    public static void CopyFileReaderWriter()
+    public static void copyFileReaderWriter()
     {
         try(var reader = new FileReader(original)) {
             try (var writer = new FileWriter(copyTo)){
-                var cbuf = new char[1024];
+                var cbuf = new char[buffSize];
                 while(reader.read(cbuf) != -1)
                 {
                     writer.write(cbuf);
@@ -216,7 +233,7 @@ public class Main {
         }
     }
 
-    public static void CreateFile(String fileName)
+    public static void createFile(String fileName)
     {
         try {
             File myObj = new File(fileName);
