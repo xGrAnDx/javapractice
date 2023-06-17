@@ -1,6 +1,9 @@
 package ru.grand.lesson6;
 
+import lombok.SneakyThrows;
+
 import java.io.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
 
@@ -13,7 +16,8 @@ public class Main {
     public static void main(String[] args) {
         // Task 1
 
-        CopyDemo();
+        generateFile();
+        copyDemo();
 
         // Task 2:
 
@@ -22,11 +26,11 @@ public class Main {
         printer.printFoldersStream();
 
         // Task 3-5
-        MatrixDemo();
+        matrixDemo();
 
     }
 
-    public static void CopyDemo()
+    public static void copyDemo()
     {
         createFile(copyTo);
         createFile(picCopy);
@@ -64,7 +68,7 @@ public class Main {
         calcTime(() -> copyBufferedFileInputOutputStream());
     }
 
-    public static void MatrixDemo()
+    public static void matrixDemo()
     {
         String[][] inputMatrix =
                 {
@@ -245,6 +249,25 @@ public class Main {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
+    }
+
+    @SneakyThrows
+    public static void generateFile()
+    {
+        var size = 100*1024;
+        var random = ThreadLocalRandom.current();
+        try (var fr = new FileWriter(original)) {
+            try (var bfr = new BufferedWriter(fr)) {
+                for (var i = 0; i < size; i++) {
+                    var buff = new char[1024];
+                    for (var j = 0; j < 1024; j++) {
+                        buff[j] = (char) (random.nextInt(26) + 'a');
+                    }
+
+                    bfr.write(buff);
+                }
+            }
         }
     }
 }
