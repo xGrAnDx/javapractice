@@ -15,8 +15,7 @@ public class Main {
     public static void main(String[] args){
 
         // Task 1: List performance comparison
-        var listDemo = new ListDemo();
-        listDemo.executeDemo();
+        ListDemo.executeDemo();
 
         // Task 2: CustomTreeMap comparator demo
         customTreeDemo();
@@ -97,7 +96,7 @@ public class Main {
         Supplier<Character> randomChar = () -> (char)(ThreadLocalRandom.current().nextInt(26) + 'a');
         System.out.format("Supplier demo: [%s]\n", randomChar.get());
 
-        Consumer<String> firstLetter = (s) -> System.out.format("Consuming [%s] print it.\n", s);
+        Consumer<String> firstLetter = (s) -> System.out.format("Consuming [%s] to print it.\n", s);
         firstLetter.accept("Consume me!");
 
         Predicate<Integer> isNegative = (i) -> i < 0;
