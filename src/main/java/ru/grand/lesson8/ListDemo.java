@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public class ListDemo {
 
     private static final String baseStr = "baseStr";
-    private void calcExecutionTime(Consumer<AbstractList<String>> consumer, AbstractList<String> list)
+    private static void calcExecutionTime(Consumer<AbstractList<String>> consumer, AbstractList<String> list)
     {
         var start = System.nanoTime();
         consumer.accept(list);
@@ -18,7 +18,7 @@ public class ListDemo {
         System.out.format("Execution time: %s ns\n", (end-start));
     }
 
-    public void executeDemo()
+    public static void executeDemo()
     {
         var arrayList = new ArrayList<String>();
         var linkedList = new LinkedList<String>();
