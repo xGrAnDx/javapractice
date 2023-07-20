@@ -18,11 +18,7 @@ public class CustomCollector implements Collector<String, StringBuilder, String>
         return (sum, element) -> {
             if (element.length() < 10)
             {
-                if (sum == null)
-                {
-                    sum.append(element);
-                }
-                else if (element.length() > sum.length())
+                if (element.length() > sum.length())
                 {
                     sum.setLength(0);
                     sum.append(element);
