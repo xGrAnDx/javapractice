@@ -16,13 +16,10 @@ public class CustomCollector implements Collector<String, StringBuilder, String>
     @Override
     public BiConsumer<StringBuilder, String> accumulator() {
         return (sum, element) -> {
-            if (element.length() < 10)
+            if (element.length() < 10 && element.length() > sum.length())
             {
-                if (element.length() > sum.length())
-                {
-                    sum.setLength(0);
-                    sum.append(element);
-                }
+                sum.setLength(0);
+                sum.append(element);
             }
         };
     }
